@@ -1,0 +1,14 @@
+<%= simple_form_for([@course, @course.units.build]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, placeholder:"Enter Unit Name", required: true %>
+    
+    <%= f.cktext_area :rich_text %>
+  </div>
+  <br />
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

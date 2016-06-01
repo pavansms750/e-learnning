@@ -1,0 +1,62 @@
+<div class="col-md-12" style="background-color:lightcyan;">
+<div id="outside">
+    
+      <p id="outside-title">
+        Happy Birthday!
+      </p>
+
+      <%= image_tag"robot.gif" %>
+-
+      <p>
+        <button onclick="open_card()">Click to open</button>
+      </p>
+
+    </div>
+    
+  
+    <div id="inside">
+    
+      <p id="inside-title">
+        
+        <% @Profiles.each do |profile| %>
+        <% if profile.dob.present? %>
+        
+        <% if(Date.today.strftime("%d%m")== profile.dob.strftime("%d%m")) %>
+         <br />
+         <br />
+         <p> </p>
+            <strong> Happy Birthday <%= profile.name %></strong><br />
+            <%= audio_tag("HAPPY BIRTHDAY", autoplay: true, controls: true, hidden: true ) %>
+            
+             
+      <%= image_tag"girl.gif", height:150, width:150 %>
+      
+      <p id="message">
+        MANY MANY HAPPY RETURNS OF THE DAY
+      </p>
+         
+        
+     <% end %>
+      <% end %>
+      </p>
+      <% end %>
+      <br />
+      <br />
+      <p> </p>
+      
+       <p>
+        <button onclick="close_card()">Click to close</button>
+      </p>
+      </div>
+   
+ <script>
+    function open_card() {
+    document.getElementById('outside').className = 'open-card';
+    }
+
+   function close_card() {
+     document.getElementById('outside').className = '';
+   }
+</script>
+
+

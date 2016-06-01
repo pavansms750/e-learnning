@@ -1,0 +1,52 @@
+
+<p id="notice"><%= notice %></p>
+<div class="col-md-offset-1 col-md-10" style="background-color:lightcyan;">
+<p>
+  
+ <h2><%= @unit.name %></h2>
+</p>
+
+<br />
+  <p>
+      <% if @unit.youtube_url.present? %>
+     <div class="embed-container">  
+       <%= embed @unit.youtube_url %>
+    </div>  
+    <% end %>
+    </p>
+    <br />
+<p>
+  <% if @unit.pdf.present? %>
+  
+  <iframe width="760" height="805" src=<%= @unit.pdf %> frameborder="0" allowfullscreen></iframe> 
+  <% end %>
+  
+</p>
+ <br />
+ <p>
+ <% if @unit.rich_text.present? %>
+  <strong>Rich text:</strong>
+  <%= raw @unit.rich_text %>
+  </p>
+ <% end %>
+
+<br />
+ <p>
+<% if @unit.video.present? %>
+  
+  <iframe width="560" height="315" src=<%= @unit.video %> frameborder="2" allowfullscreen></iframe> 
+<% end %>
+</p>
+<br />
+
+ <div class="btn btn-group">
+
+    <%= link_to "Back", @course, class:"btn btn-primary active" %></td>
+  <% if user_signed_in? %>
+		  <% if @unit.user_id == current_user.id || current_user.admin == true %>
+
+     <%= link_to "Edit", edit_course_unit_path(@course, @unit), class:"btn btn-success active" %></td>
+     <%= link_to "Delete", course_unit_path(@course, @unit), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger active" %> </td>
+   <% end %>
+  <% end %>
+ </div>

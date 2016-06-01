@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<div class="col-md-12" style="background-color:lightcyan;">
+    
+    <% if user_signed_in?  %>
+    	<% if @course.user_id == current_user.id %>
+           <%= link_to new_course_unit_path(@course), class:"pull-right" do %>
+              <i class="fa fa-plus fa-2x">AddUnit</i>
+           <% end %>
+       <% end %>
+     <% end %>
+   <br />
+   
+    <h1><%= @course.name %></h1>
+
+<p>
+    <% if @course.image.present? %>
+  <%= image_tag @course.image, height:200, width:300 %>
+  <% else %>
+  <%= image_tag"course", height:200, width:300 %>
+  <% end %>
+</p>
+
+<p>
+    <h3><strong>Created By:</strong><b><%= @course.user.name%></b></h3>
+</p>
+
+<p>
+  <strong>Description:</strong><br />
+  <h4><%= @course.description %></h4>
+</p>
+
+       <h3 >Units:</h3>
+       <% if @course.units.present? %>
+       <div class="col-md-12" style="background-color:pink;">
+		<!-- renders the _comment.html.erb partial file. -->
+		<p><%= render @course.units %></p>
+      </div>
+     <% else %>
+     <p><h3>There Are No Units <h3></p>
+     <% end %>
+<div class="btn btn-group">
+    <%= link_to 'Back', courses_path, class: "btn btn-primary" %>
+    <% if user_signed_in?  %>
+			<% if @course.user_id == current_user.id || current_user.admin == true %>
+          <%= link_to 'Edit',  edit_course_path(@course), class: "btn btn-success" %> 
+
+          <%= link_to 'Delete', course_path(@course), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+     <% end %>
+<% end %>
+</div>
+</div>

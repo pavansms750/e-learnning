@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+ <div class="row">
+
+  <% if @courses.count == 0 %>
+
+	<h1>There are no courses  </h1>
+
+<% else %>	
+
+                  <div id="custom-search-input">
+                            <div class="input-group col-md-offset-5 col-md-6">
+                             	<%= form_tag courses_path, :method => 'get' do   %>
+                             	 <span class="input-group-btn">
+                              <%= text_field_tag :search, params[:search], class:"search-query form-control",  placeholder:"Search Course" %>
+                               
+                                    <%= submit_tag "search", class:"btn btn-danger" do %>
+                                        <i class="fa fa-search"></i>
+                                    <% end %>
+                                </span>
+                                 <% end %>
+                            </div>
+                        </div>
+		<% @courses.each do |course| %>
+
+			<div class="col-xs-6 col-sm-4">
+			<center><h3><%= course.name %></h3></center>
+			          <div class="relative">
+			            <% if course.image.present? %>
+                      <%= link_to image_tag(course.image,:class => "style_image", height:200, width:300), course %>
+                      
+                    <% if course.user.profile.image.present? %>  
+                      <%= image_tag course.user.profile.image, class:"absolute", height:50, width:50 %>
+                      <% else %>
+                         <%= image_tag "images.png", class:"absolute", height:50, width:50 %>
+                      <% end %>
+                  </div>
+                   <% else %>
+                     <%= link_to image_tag("course.png",:class => "style_image", height:200, width:300), course %>
+                      
+                     
+                     <% if course.user.profile.image.present? %>  
+                      <%= image_tag course.user.profile.image, class:"absolute", height:50, width:50 %>
+                      <% else %>
+                         <%= image_tag "images.png", class:"absolute", height:50, width:50 %>
+                      <% end %>
+                   </div>
+                   
+                 <% end %>
+                 <br/>
+              <center>
+               <%= link_to like_course_path(course), class:"like", method: :put do %>
+                          <button type="button" class="btn btn-info" area-label="Left Align">
+                         <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" area-hidden="true"></span>
+                         <span class="badge"><%= course.get_upvotes.size %></span>
+                    </button>
+             <% end %>
+
+            <%= link_to unlike_course_path(course), class:"like", method: :put do %>
+                    <button type="button" class="btn btn-info" area-label="Left Align">
+                     <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" area-hidden="true"></span>
+                     <span class="badge"><%= course.get_downvotes.size %></span>
+                 </button>
+          <% end %>
+          </center>
+      <br />
+		    	</div>	
+
+		<% end %>
+	
+  <% end %>	
+

@@ -1,0 +1,7 @@
+    <h2><%=  comment.description %></h2>
+	
+		<div class="btn-group">
+			<%= link_to "Edit", edit_question_comment_path(comment.question, comment), class:"btn btn-primary btn-sm active" %>
+			<%= link_to "Delete",question_comment_path(comment.question, comment), method: :delete, data: { confirm: "Are You Sure To Delete The Comment ?" }, class:"btn btn-danger btn-sm active"  %>
+		   </div>
+	

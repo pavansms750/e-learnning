@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', 'courses', 'simple-sidebar' %>
+  <%= javascript_include_tag 'application', 'jquery.min' %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+			<ul class="nav navbar-nav ">
+			  <li><a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+			      <i class="fa fa-bars fa-2x"></i>
+			        </a></li>
+			    <div class="navbar-header">
+			        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+					<li><%= link_to (image_tag"logo.png", height:50, width:200), root_path %></li>
+					
+				</div>
+			</ul>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in? %>
+					<li><%= link_to destroy_user_session_path, method: :delete do %>
+					    <i class="fa fa-sign-out fa-lg active">SignOut</i>
+					     <% end %>
+					</li>
+				<% else %>	
+					<li><%= link_to new_user_session_path do %>
+					    <i class="fa fa-sign-in fa-lg active">SignIn</i>
+					     <% end %>
+					</li>
+					<li><%= link_to new_user_registration_path do %>
+					  <i class="fa fa-user fa-lg active">SignUp</i>
+					  <% end %>
+					</li>
+				<% end %>
+			
+             <% if user_signed_in? %>
+				<% if current_user.profile.image.present? %>
+                 <%= link_to profile_path(current_user.profile) do %>
+                 <%= image_tag current_user.profile.image.url, :width => 50, :height => 50, class:"img-circle" %> 
+                 <% end %>
+
+                 <% else %>
+
+                 <%= link_to profile_path(current_user.profile) do %>
+                  <%= image_tag "images.png", :width => 50, :height => 50, class:"img-circle" %>
+                   <% end %>
+                <% end %>
+              <% end %>
+
+				<% if user_signed_in? %>
+					<li><%= link_to new_course_path  do %>
+					<i class="fa fa-plus fa-lg active">Add Course</i>
+					  <% end %>
+					</li>
+				<% end %>
+			</ul>
+	      </div>
+	      </div>
+	   </div>
+	</nav>
+
+	 <br/>
+	 
+  
+  <div id="wrapper">
+
+        <!-- Sidebar -->
+       
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <br />
+                <br />
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <%= link_to "Event", event_index_path %>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <br />
+                        
+                    	<%= yield %>
+                    	
+      	
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+  </div>
+
+	
+	<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</body>
+</html>

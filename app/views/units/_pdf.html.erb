@@ -1,0 +1,15 @@
+<%= simple_form_for([@course, @course.units.build]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, placeholder:"Enter Unit Name", required:"true" %>
+    <p>Choose PDF File:</p>
+    <%= f.file_field :pdf, accept:"application/pdf" %>
+    <br />
+  </div>
+  <br />
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

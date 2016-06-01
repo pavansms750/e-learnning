@@ -1,0 +1,18 @@
+<%= simple_form_for @course,  html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <a href="#" data-toggle="tooltip" title="Please Enter Your Name"></a><%= f.input :name %></a>
+</div>
+    
+    <%= f.input :description %>
+     <%= f.file_field :image, class: 'filestyle',  
+       :'data-classButton' => 'btn btn-primary',
+       :'data-input' => 'false', classIcon:  'icon-plus', 
+       :'data-buttonText' => 'Upload Image' %>
+   
+      <%= f.submit 'Create Course', class: 'btn btn-primary'%>
+    </div>
+</div>
+<% end %>
+

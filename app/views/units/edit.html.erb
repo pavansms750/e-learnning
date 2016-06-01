@@ -1,0 +1,41 @@
+
+<div class="col-md-10" style="background-color:lightcyan;">
+<h1>Editing Unit</h1>
+
+<%= simple_form_for([@course, @unit]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    
+    
+    
+      <% if @unit.pdf.present? %>
+      <%= f.input :name %>
+      <i class="fa fa-file-pdf-o">
+    <%= @unit.pdf.file.filename %></i>
+    <%= f.file_field :pdf, accept:"application/pdf" %>
+    <% end %>
+     <% if @unit.video.present? %>
+      <%= f.input :name %>
+      <i class="fa fa-file-video-o">
+    <%= @unit.pdf.file.filename %></i>
+    <%= f.file_field :video, accept:"video/*" %>
+    <% end %>
+     <% if @unit.youtube_url.present? %>
+      <%= f.input :name %>
+      <%= f.input :youtube_url %>
+    <% end %>
+    <% if @unit.rich_text.present? %>
+      <%= f.input :name %>
+      <%= f.cktext_area :rich_text %>
+    <% end %>
+    
+    <br />
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', @course, class:"btn btn-primary active" %>
+</div>

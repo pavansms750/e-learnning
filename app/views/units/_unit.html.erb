@@ -1,0 +1,10 @@
+    <h2><%= link_to unit.name, course_unit_path(@course, unit) %></h2>
+	<% if user_signed_in? %>
+		<% if unit.user_id == current_user.id || current_user.admin == true %>
+		<div class="btn-group">
+			<%= link_to "Edit", edit_course_unit_path(unit.course, unit), class:"btn btn-primary btn-sm active" %>
+			<%= link_to "Delete",course_unit_path(unit.course, unit), method: :delete, data: { confirm: "Are You Sure To Delete The Comment ?" }, class:"btn btn-danger btn-sm active"  %>
+		   </div>
+		<% end %>
+		<br />
+	<% end %>

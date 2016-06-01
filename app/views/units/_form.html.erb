@@ -1,0 +1,21 @@
+<%= simple_form_for([@course, @course.units.build]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, placeholder:"Enter Unit Name" %>
+    
+    <%= f.input :youtube_url, placeholder:"Enter Youtube_URL" %>
+    <%= f.cktext_area :rich_text %>
+    <p>Choose PDF File:</p>
+    <%= f.file_field :pdf, accept:"application/pdf" %>
+    <br />
+    <p>Choose a Video File: </p>
+    <%= f.file_field :video, accept:"video/*" %>
+    
+  </div>
+  <br />
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

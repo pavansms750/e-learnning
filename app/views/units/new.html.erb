@@ -1,0 +1,38 @@
+<div class="col-md-10" style="background-color:lightcyan;">
+<h1>New Unit</h1>
+
+
+
+<div class="bs-example">
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="tab" href="#sectionA"><i class="fa fa-file-pdf-o fa-2x"> PDF</i></a></li>
+        <li><a data-toggle="tab" href="#sectionB"><i class="fa fa-file-video-o fa-2x"> VIDEO</i></a></li>
+         <li><a data-toggle="tab" href="#sectionC"><i class="fa fa-youtube fa-2x"> YOUTUBE</i></a></li>
+         <li><a data-toggle="tab" href="#sectionD"><i class="fa fa-file-text fa-2x"> RICH TEXT</i></a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="sectionA" class="tab-pane fade in active">
+            <h3>PDF</h3>
+             <p><%= render 'pdf' %></p> 
+             </div>
+             
+             <div id="sectionB" class="tab-pane fade">
+            <h3>VIDEO</h3>
+            <p><%= render 'video' %></p>
+            </div>
+            
+            <div id="sectionC" class="tab-pane fade">
+            <h3>YOUTUBE</h3>
+            <p><%= render 'youtube' %></p>
+            </div>
+            <div id="sectionD" class="tab-pane fade">
+            <h3>RICH TEXT</h3>
+            <p><%= render 'richtext' %></p>
+            </div>
+            
+            </div>
+            <%= link_to 'Back', @course, class:"btn btn-primary active" %>
+      </div>
+
+
+</div>
